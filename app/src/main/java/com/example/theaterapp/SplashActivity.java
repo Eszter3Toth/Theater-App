@@ -54,7 +54,7 @@ public class SplashActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             //get user type
                             String userType = "" + snapshot.child("userType").getValue();
-                            //chech user type
+                            //check user type
                             if (userType.equals("user")) {
                                 startActivity(new Intent(SplashActivity.this, UserActivity.class));
                                 finish();
