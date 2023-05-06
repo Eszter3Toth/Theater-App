@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "141248791659",
+    "project_id": "theater-52839",
+    "storage_bucket": "theater-52839.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141248791659:android:6f2962f356dad9c9be1d2e",
+        "android_client_info": {
+          "package_name": "com.example.theaterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141248791659-v4mol1ivnf6pge0hoedj86ce85ajup28.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.theaterapp",
+            "certificate_hash": "3073746308b717223331c7d6dc7c6b9646f2e1cf"
+          }
+        },
+        {
+          "client_id": "141248791659-b89a4omptaerjoaiaj1vha809ic0pm4d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXS_jlsN-NK4LxQo4gU6JLwR4-D9Rs9i4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141248791659-b89a4omptaerjoaiaj1vha809ic0pm4d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
