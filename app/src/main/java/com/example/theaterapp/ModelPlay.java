@@ -55,5 +55,4 @@ public class ModelPlay {
         this.ticket_money = ticket_money;
     }
 
-
 }
