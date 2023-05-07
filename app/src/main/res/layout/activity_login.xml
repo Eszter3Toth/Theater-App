@@ -7,31 +7,39 @@
     android:background="@drawable/background_try_1"
     tools:context=".LoginActivity">
 
-    <RelativeLayout
-        android:id="@+id/toolbarRL"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbarCL"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="240dp"
         android:background="@drawable/shape_login">
 
         <ImageView
             android:id="@+id/iconIv"
             android:layout_width="110dp"
             android:layout_height="110dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/theater_icon" />
+            android:layout_marginTop="25dp"
+            android:src="@drawable/theater_icon"
+            app:layout_constraintBottom_toTopOf="@id/titleTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/titleTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iconIv"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
             android:text="Kérjük jelentkezzen be"
             android:textColor="@color/white"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/iconIv"
+            app:layout_constraintStart_toStartOf="@id/iconIv"
+            app:layout_constraintTop_toBottomOf="@id/iconIv"
+            app:layout_constraintVertical_bias="0.0" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
