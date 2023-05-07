@@ -16,32 +16,31 @@
         <TextView
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
             android:text="Felhasználó"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/subTitleTv"
             android:layout_width="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/titleTv"
             android:layout_height="wrap_content"
+            android:layout_below="@id/titleTv"
+            android:layout_centerHorizontal="true"
             android:text="abc@example.com"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <ImageButton
             android:id="@+id/logoutBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:src="@drawable/baseline_logout"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"/>
-
+            android:background="@android:color/transparent"
+            android:src="@drawable/baseline_logout" />
 
 
     </RelativeLayout>
@@ -51,24 +50,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbarRL"
-        android:hint="Keresés"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:drawableStart="@drawable/baseline_search_24"
-        android:padding="10dp"
         android:background="@color/white"
-        android:textColor="@color/icon_color"/>
+        android:drawableStart="@drawable/baseline_search_24"
+        android:hint="Keresés"
+        android:padding="10dp"
+        android:textColor="@color/icon_color" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoriesRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/row_category_user"
-        android:layout_margin="5dp"
+        android:layout_above="@id/bottomLl"
         android:layout_below="@id/searchEt"
+        android:layout_margin="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_above="@id/bottomLl"/>
+        tools:listitem="@layout/row_category_user" />
 
     <LinearLayout
         android:id="@+id/bottomLl"

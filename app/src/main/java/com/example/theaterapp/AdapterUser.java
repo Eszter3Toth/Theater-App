@@ -20,10 +20,9 @@ import com.example.theaterapp.databinding.RowCategoryUserBinding;
 import java.util.ArrayList;
 
 public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderCategory> implements Filterable {
-    private Context context;
-
     public ArrayList<ModelPlay> playArrayList;
-    private ArrayList<ModelPlay> filterList;
+    private final Context context;
+    private final ArrayList<ModelPlay> filterList;
     private RowCategoryUserBinding binding;
 
     private FilterUser filter;
@@ -86,7 +85,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderCategory
 
     @Override
     public Filter getFilter() {
-        if(filter == null){
+        if (filter == null) {
             filter = new FilterUser(filterList, AdapterUser.this);
         }
         return filter;
@@ -95,6 +94,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.HolderCategory
     public class HolderCategory extends RecyclerView.ViewHolder {
         TextView categoryTv;
         ImageButton buyTicket;
+
         public HolderCategory(@NonNull View itemView) {
             super(itemView);
 

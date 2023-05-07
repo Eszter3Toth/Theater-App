@@ -46,7 +46,7 @@ public class playAddActivity extends AppCompatActivity {
         progressDialog.setTitle("Kérlek várj");
         progressDialog.setCanceledOnTouchOutside(false);
 
-        //handle click, upload
+        //handle click, upload, back
         binding.submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

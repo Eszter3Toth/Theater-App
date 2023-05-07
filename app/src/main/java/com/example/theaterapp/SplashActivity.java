@@ -37,15 +37,24 @@ public class SplashActivity extends AppCompatActivity {
         }, 2000);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            checkUser();
+        }
+    }
+
     private void checkUser() {
         //get current user
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser == null){
+        if (firebaseUser == null) {
             //user is not logged in
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish();
-        }
-        else {
+        } else {
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(firebaseUser.getUid())
                     .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -70,7 +79,5 @@ public class SplashActivity extends AppCompatActivity {
                         }
                     });
         }
-
-
     }
 }
