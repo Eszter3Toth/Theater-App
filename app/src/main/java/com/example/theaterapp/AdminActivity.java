@@ -111,17 +111,21 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void checkUser() {
-        //get current user
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser == null) {
-            //not logged in
-            startActivity(new Intent(AdminActivity.this, MainActivity.class));
-            finish();
-        } else {
-            //logged in
-            String email = firebaseUser.getEmail();
-            //set in textview
-            binding.subTitleTv.setText(email);
-        }
+        firebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser == null) {
+                    //not logged in
+                    startActivity(new Intent(AdminActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    //logged in
+                    String email = firebaseUser.getEmail();
+                    //set in textview
+                    binding.subTitleTv.setText(email);
+                }
+            }
+        });
     }
 }

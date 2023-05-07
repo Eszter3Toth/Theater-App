@@ -75,15 +75,6 @@ public class UserActivity extends AppCompatActivity {
                 checkUser();
             }
         });
-        /*binding.buyTicket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                firebaseAuth.signOut();
-                checkUser();
-            }
-        });
-
-         */
     }
 
     private void loadPlays() {
@@ -114,17 +105,22 @@ public class UserActivity extends AppCompatActivity {
     }
 
     private void checkUser() {
-        //get current user
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser == null) {
-            //not logged in
-            startActivity(new Intent(UserActivity.this, MainActivity.class));
-            finish();
-        } else {
-            //logged in
-            String email = firebaseUser.getEmail();
-            //set in textview
-            binding.subTitleTv.setText(email);
-        }
+        firebaseAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                if (firebaseUser == null) {
+                    //not logged in
+                    startActivity(new Intent(UserActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    //logged in
+                    String email = firebaseUser.getEmail();
+                    //set in textview
+                    binding.subTitleTv.setText(email);
+                }
+            }
+        });
     }
+
 }
