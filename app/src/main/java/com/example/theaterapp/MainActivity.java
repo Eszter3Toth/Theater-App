@@ -27,11 +27,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //skipBtn stuff -> go to home page wooo
-        binding.skipBtn.setOnClickListener(new View.OnClickListener() {
+        //registerBtn stuff -> go register screen wooo
+        binding.registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, UserActivity.class));
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
 

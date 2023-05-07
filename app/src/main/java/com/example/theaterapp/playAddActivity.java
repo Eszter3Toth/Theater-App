@@ -30,7 +30,7 @@ public class playAddActivity extends AppCompatActivity {
     //progress dialog
     private ProgressDialog progressDialog;
     private String play = "";
-    private long ticket_money = 2500;
+    private final long ticket_money = 2500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
