@@ -2,6 +2,8 @@ package com.example.theaterapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -26,9 +28,9 @@ public class AdminActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     //arraylist for category
-    private ArrayList<ModelCategory> categoryArrayList;
+    private ArrayList<ModelPlay> playArrayList;
 
-    private AdapterCategory adapterCategory;
+    private AdapterPlay adapterPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,32 @@ public class AdminActivity extends AppCompatActivity {
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
         checkUser();
-        loadCategories();
+        loadplays();
+
+        binding.searchEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try{
+                    adapterPlay.getFilter().filter(s);
+                }catch(Exception e){
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
-        //click handle, logout, category
+        //click handle, logout, play
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,28 +78,28 @@ public class AdminActivity extends AppCompatActivity {
         binding.addCategoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminActivity.this, CategoryAddActivity.class));
+                startActivity(new Intent(AdminActivity.this, playAddActivity.class));
             }
         });
     }
 
-    private void loadCategories() {
-        categoryArrayList = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categories");
+    private void loadplays() {
+        playArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Plays");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                categoryArrayList.clear();
+                playArrayList.clear();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     //get data
-                    ModelCategory model = ds.getValue(ModelCategory.class);
+                    ModelPlay model = ds.getValue(ModelPlay.class);
 
                     //add to arraylist
-                    categoryArrayList.add(model);
+                    playArrayList.add(model);
                 }
-                adapterCategory = new AdapterCategory(AdminActivity.this, categoryArrayList);
+                adapterPlay = new AdapterPlay(AdminActivity.this, playArrayList);
 
-                binding.categoriesRV.setAdapter(adapterCategory);
+                binding.categoriesRV.setAdapter(adapterPlay);
 
             }
 

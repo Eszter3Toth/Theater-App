@@ -1,6 +1,7 @@
 package com.example.theaterapp;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class CategoryAddActivity extends AppCompatActivity {
+public class playAddActivity extends AppCompatActivity {
 
     //view binding
     private ActivityCategoryAddBinding binding;
@@ -28,7 +29,8 @@ public class CategoryAddActivity extends AppCompatActivity {
 
     //progress dialog
     private ProgressDialog progressDialog;
-    private String category = "";
+    private String play = "";
+    private long ticket_money = 2500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,18 +64,18 @@ public class CategoryAddActivity extends AppCompatActivity {
 
     private void validateData() {
         //get Data
-        category = binding.categoryEt.getText().toString().trim();
+        play = binding.categoryEt.getText().toString().trim();
         //validate
-        if (TextUtils.isEmpty(category)) {
-            Toast.makeText(this, "Kérlek add meg a kategóriát", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(play)) {
+            Toast.makeText(this, "Kérlek add meg a darab nevét", Toast.LENGTH_SHORT).show();
         } else {
-            addCategoryFirebase();
+            addPlayFirebase();
         }
     }
 
-    private void addCategoryFirebase() {
+    private void addPlayFirebase() {
         //writing stuff cuz we are still nice to people
-        progressDialog.setMessage("Kategória hozzáadása");
+        progressDialog.setMessage("Színházi darab hozzáadása");
         progressDialog.show();
 
         //get timestamp
@@ -82,26 +84,29 @@ public class CategoryAddActivity extends AppCompatActivity {
         //setup data
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("id", "" + timestamp);
-        hashMap.put("category", "" + category);
-        hashMap.put("timestamp", "" + timestamp);
+        hashMap.put("play", "" + play);
+        hashMap.put("timestamp", timestamp);
         hashMap.put("uid", "" + firebaseAuth.getUid());
+        hashMap.put("ticket_money", ticket_money);
 
         //adding data to firebase
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Categories");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Plays");
         ref.child("" + timestamp)
                 .setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         progressDialog.dismiss();
-                        Toast.makeText(CategoryAddActivity.this, "A kategória létrejött", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(playAddActivity.this, "A darab létrejött", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(playAddActivity.this, AdminActivity.class));
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         progressDialog.dismiss();
-                        Toast.makeText(CategoryAddActivity.this, "A hozzáadás nem sikerült", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(playAddActivity.this, "A hozzáadás nem sikerült", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_try_1"
-    tools:context=".CategoryAddActivity">
+    tools:context=".playAddActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:layout_below="@id/iconIv"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="Új kategória létrehozása"
+            android:text="Új darab hozzáadása"
             android:textColor="@color/white"
             android:textSize="28sp" />
 
@@ -57,7 +57,7 @@
             android:background="@drawable/shape_edittext"
             android:drawableStart="@drawable/baseline_category_24"
             android:drawablePadding="10dp"
-            android:hint="Kategória neve"
+            android:hint="Színházi darab neve"
             android:inputType="textPersonName|textCapWords"
             android:padding="10dp"
             android:textColor="@color/black"
