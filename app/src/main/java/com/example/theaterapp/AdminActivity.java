@@ -21,7 +21,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding=ActivityAdminBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_admin);
+        setContentView(binding.getRoot());
 
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();

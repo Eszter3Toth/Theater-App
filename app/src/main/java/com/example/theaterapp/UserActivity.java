@@ -18,10 +18,12 @@ public class UserActivity extends AppCompatActivity {
     //firebase auth
     private FirebaseAuth firebaseAuth;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+        binding= ActivityUserBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
