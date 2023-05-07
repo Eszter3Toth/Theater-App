@@ -22,106 +22,109 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class UserActivity extends AppCompatActivity {
-    // View binding
+    //view binding
     private ActivityUserBinding binding;
 
-    // Firebase Authentication
+    //firebase auth
     private FirebaseAuth firebaseAuth;
 
-    // ArrayList for plays
+    //arraylist for play
     private ArrayList<ModelPlay> modelPlayArrayList;
 
     private AdapterUser adapterUser;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Inflate the layout using view binding
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Initialize Firebase Authentication
+        //init firebase auth
         firebaseAuth = FirebaseAuth.getInstance();
-
-        // Check if the user is logged in or not
         checkUser();
-
-        // Load all the plays from Firebase Database
         loadPlays();
 
-        // Handle search functionality
         binding.searchEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
-                    // Filter the adapter data based on user's search input
                     adapterUser.getFilter().filter(s);
                 } catch (Exception e) {
-                    // Catch any exception that might occur during filtering
+
                 }
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+
             }
         });
 
-        // Handle logout button click
+        //click handle
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Sign out the user from Firebase Authentication
                 firebaseAuth.signOut();
-                // Check if the user is logged in or not
                 checkUser();
             }
         });
+        /*binding.buyTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.signOut();
+                checkUser();
+            }
+        });
+
+         */
     }
 
     private void loadPlays() {
         modelPlayArrayList = new ArrayList<>();
-        // Get a reference to the "Plays" node in Firebase Database
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Plays");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 modelPlayArrayList.clear();
-                // Loop through all the plays in the "Plays" node
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    // Get the play data from the snapshot
+                    //get data
                     ModelPlay model = ds.getValue(ModelPlay.class);
-                    // Add the play to the ArrayList
+
+                    //add to arraylist
                     modelPlayArrayList.add(model);
                 }
-                // Initialize the adapter with the ArrayList
                 adapterUser = new AdapterUser(UserActivity.this, modelPlayArrayList);
-                // Set the adapter for the RecyclerView
+
                 binding.categoriesRV.setAdapter(adapterUser);
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle any errors that might occur during data retrieval
+
             }
         });
     }
 
     private void checkUser() {
-        // Get the current user from Firebase Authentication
+        //get current user
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if (firebaseUser == null) {
-            // If the user is not logged in, redirect to the MainActivity
+            //not logged in
             startActivity(new Intent(UserActivity.this, MainActivity.class));
             finish();
         } else {
-            // If the user is logged in, show their email in the subtitle TextView
+            //logged in
             String email = firebaseUser.getEmail();
+            //set in textview
             binding.subTitleTv.setText(email);
         }
     }
 }
-
