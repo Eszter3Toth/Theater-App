@@ -40,12 +40,11 @@ public class SplashActivity extends AppCompatActivity {
     private void checkUser() {
         //get current user
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser == null){
+        if (firebaseUser == null) {
             //user is not logged in
             startActivity(new Intent(SplashActivity.this, MainActivity.class));
             finish();
-        }
-        else {
+        } else {
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(firebaseUser.getUid())
                     .addListenerForSingleValueEvent(new ValueEventListener() {

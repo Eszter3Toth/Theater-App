@@ -37,7 +37,7 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= ActivityUserBinding.inflate(getLayoutInflater());
+        binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         //init firebase auth
@@ -53,9 +53,9 @@ public class UserActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                try{
+                try {
                     adapterUser.getFilter().filter(s);
-                }catch(Exception e){
+                } catch (Exception e) {
 
                 }
 
@@ -116,7 +116,7 @@ public class UserActivity extends AppCompatActivity {
     private void checkUser() {
         //get current user
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if (firebaseUser == null){
+        if (firebaseUser == null) {
             //not logged in
             startActivity(new Intent(UserActivity.this, MainActivity.class));
             finish();

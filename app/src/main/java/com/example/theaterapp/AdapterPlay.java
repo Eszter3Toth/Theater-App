@@ -24,9 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 public class AdapterPlay extends RecyclerView.Adapter<AdapterPlay.HolderCategory> implements Filterable {
-    private Context context;
     public ArrayList<ModelPlay> playArrayList, filterList;
-
+    private final Context context;
     //view binding
     private RowCategoryBinding binding;
 
@@ -101,7 +100,7 @@ public class AdapterPlay extends RecyclerView.Adapter<AdapterPlay.HolderCategory
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(context, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -113,7 +112,7 @@ public class AdapterPlay extends RecyclerView.Adapter<AdapterPlay.HolderCategory
 
     @Override
     public Filter getFilter() {
-        if(filter == null){
+        if (filter == null) {
             filter = new FilterPlay(filterList, this);
         }
         return filter;
@@ -123,6 +122,7 @@ public class AdapterPlay extends RecyclerView.Adapter<AdapterPlay.HolderCategory
     class HolderCategory extends RecyclerView.ViewHolder {
         TextView categoryTv;
         ImageButton deleteBtn;
+
         public HolderCategory(@NonNull View itemView) {
             super(itemView);
 
