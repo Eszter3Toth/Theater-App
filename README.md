@@ -23,3 +23,4 @@ Mobilalkalmazás fejlesztés kötprog
 - CRUD műveletek közül megvan valósítva a create, read és delete művelet
 
 Ha kihagytam valamit akkor azt majd úgyis látod a projectben 
+És ne aggódj ebben a projektben majdnem mindenhol elírtam a Theatre-t Theather-re de lusta vagyok kijavítani
